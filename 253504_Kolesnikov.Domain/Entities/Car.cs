@@ -12,9 +12,10 @@ namespace _253504_Kolesnikov.Domain.Entities
         public string ?Country { get; set; }
         public string ?Description { get; set; }
         public int ?Year { get; set; }
-        
-        private List<Advertisement> _advertisements = new();
-        public IReadOnlyList<Advertisement> Advertisements { get => _advertisements.AsReadOnly(); }
+
+        //private List<Advertisement> _advertisements = new();
+        //public IReadOnlyList<Advertisement> Advertisements { get => _advertisements.AsReadOnly(); }
+        public List<Advertisement> Advertisements { get; private set; } = [];
         public Car() { }
         public Car(int id, string name, string country, string description, int year) 
         {
@@ -24,6 +25,17 @@ namespace _253504_Kolesnikov.Domain.Entities
             Description = description;
             Year = year;
         }
-
+        public void AddAdvertisement(Advertisement advertisement)
+        {
+            Advertisements.Add(advertisement);
+        }
+        public string GetCountryYear()
+        {
+            return $"{Country}, {Year}";
+        }
+        public string GetDescription()
+        {
+            return $"{Description}";
+        }
     }
 }

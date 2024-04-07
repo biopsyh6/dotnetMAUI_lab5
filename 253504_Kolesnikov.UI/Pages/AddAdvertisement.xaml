@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_253504_Kolesnikov.UI.Pages.AddAdvertisement"
+             x:DataType="models:AddAdvertisementViewModel"
+             xmlns:models="clr-namespace:_253504_Kolesnikov.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:entities="clr-namespace:_253504_Kolesnikov.Domain.Entities;assembly=253504_Kolesnikov.Domain"
+             xmlns:converter="clr-namespace:_253504_Kolesnikov.UI.ValueConverters"
+             Title="AddAdvertisement">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            EventName="Loaded"
+            Command="{Binding UpdateCarsListCommand}"/>
+    </ContentPage.Behaviors>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label
+            Text="Объявление о продаже"
+            FontSize="22"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="25"
+            />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Наименование" FontSize="18" VerticalOptions="Center"/>
+                <Entry Grid.Row="0" Grid.Column="1" Placeholder="Введите наименование" FontSize="18"
+                   Text="{Binding Name}" VerticalOptions="Center"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Описание:" FontSize="18" VerticalOptions="Center"/>
+                <Editor Grid.Row="1" Grid.Column="1" Placeholder="Введите описание" FontSize="18"
+                    Text="{Binding Description}" VerticalOptions="Center" HeightRequest="200"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Цена" FontSize="18" VerticalOptions="Center"/>
+                <Entry Grid.Row="2" Grid.Column="1" Placeholder="Введите цену" FontSize="18"
+                   Text="{Binding Cost}" VerticalOptions="Center" Keyboard="Numeric" MaxLength="8"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Дата" FontSize="18" VerticalOptions="Center"/>
+                <DatePicker Grid.Row="3" Grid.Column="1" FontSize="18" Date="{Binding CreatedAt}" VerticalOptions="Center"/>
+
+                <Button Grid.Row="4" Grid.Column="0" Text="Выбрать файл" Command="{Binding SelectFileCommand}"/>
+                <Image Grid.Row="4" Grid.Column="1" Source="{Binding ImagePath}" HeightRequest="150"/>
+
+                <Picker
+                    Grid.Row="5" Grid.Column="0"
+                    ItemsSource="{Binding Cars}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedCar}"
+                    Title="Выберите марку"
+                    HeightRequest="60"
+                    WidthRequest="200"
+                    BackgroundColor="AntiqueWhite"
+                    FontSize="18"/>
+                <Button
+                    Grid.Row="5" Grid.Column="1"
+                    HeightRequest="50"
+                    WidthRequest="150"
+                    CornerRadius="10"
+                    Text="Добавить"
+                    FontSize="18"
+                    Command="{Binding EnterCommand}"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

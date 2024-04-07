@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:_253504_Kolesnikov.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:entities="clr-namespace:_253504_Kolesnikov.Domain.Entities;assembly=253504_Kolesnikov.Domain"
+             xmlns:converter="clr-namespace:_253504_Kolesnikov.UI.ValueConverters"
+             x:DataType="models:CarsListViewModel"
+             x:Class="_253504_Kolesnikov.UI.Pages.CarsList"
+             Title="CarsList">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior 
+            EventName="Loaded"
+            Command="{Binding UpdateCarsListCommand}"/>
+    </ContentPage.Behaviors>
+    <ContentPage.Resources>
+        <converter:CountryYearConverter x:Key="countryYearConverter"/>
+        <converter:DescriptionConverter x:Key="descriptionConverter"/>
+        <converter:PriceToColorValueConverter x:Key="priceToColorValueConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            IconImageSource="icon_add.png"
+            Command="{Binding AddCarPageCommand}"
+            CommandParameter="{Binding Cars}"
+            />
+        <ToolbarItem
+            IconImageSource="icon_shopping_cart.png"
+            Command="{Binding AddAdvertisementPageCommand}"
+            CommandParameter="{Binding Cars}"
+            />
+    </ContentPage.ToolbarItems>
+    <VerticalStackLayout>
+        <Picker
+            x:Name="PickerCars"
+            ItemsSource="{Binding Cars}"
+            ItemDisplayBinding="{Binding Name}"
+            SelectedItem="{Binding SelectedCar}"
+            Title="Выберите марку автомобиля"
+            HeightRequest="40"
+            WidthRequest="350"
+            BackgroundColor="WhiteSmoke">
+            <Picker.Behaviors>
+                <toolkit:EventToCommandBehavior 
+                    EventName="SelectedIndexChanged"
+                    Command="{Binding UpdateAdvertisementsListCommand}"/>
+            </Picker.Behaviors>
+        </Picker>
+        <VerticalStackLayout
+            WidthRequest="350"
+            Padding="5"
+            BackgroundColor="GhostWhite">
+            <HorizontalStackLayout>
+                <Label Text="{Binding SelectedCar, Converter={StaticResource countryYearConverter}}"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="{Binding SelectedCar, Converter={StaticResource descriptionConverter}}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <CollectionView
+            x:Name="listAdvertisements"
+            ItemsSource="{Binding Advertisements}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="entities:Advertisement">
+                    <Border             
+                        Stroke="{Binding Cost, Converter={StaticResource priceToColorValueConverter}}"
+                        StrokeThickness="1.5">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20"/>
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers> 
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource
+                                                            AncestorType={x:Type models:CarsListViewModel}},
+                                                            Path=ShowDetailsCommand}"
+                                                            CommandParameter="{Binding}"/>
+                        </Border.GestureRecognizers>
+                        <HorizontalStackLayout> 
+                            <Image
+                                MaximumHeightRequest="100"
+                                MinimumWidthRequest="90"
+                                Source="{Binding ImagePath}"
+                                />
+                            <Label
+                                WidthRequest="230"
+                                Margin="20"
+                                FontSize="20"
+                                Text="{Binding Name}"
+                                HorizontalOptions="EndAndExpand"/>
+                        </HorizontalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

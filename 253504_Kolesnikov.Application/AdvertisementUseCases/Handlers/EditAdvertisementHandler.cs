@@ -16,9 +16,22 @@ namespace _253504_Kolesnikov.Application.AdvertisementUseCases.Handlers
         }
         public async Task Handle(EditAdvertisementQuery request, CancellationToken cancellationToken)
         {
-            var advertisement = new Advertisement(request.Id, request.Name, request.CreatedAt,
-                request.Description, request.ImagePath, request.CarId, request.Cost);
-            await _unitOfWork.AdvertisementRepository.UpdateAsync(advertisement, cancellationToken);
+            //var advertisement = new Advertisement(request.Id, request.Name, request.CreatedAt,
+            //    request.Description, request.ImagePath, request.CarId, request.Cost);
+            //await _unitOfWork.AdvertisementRepository.UpdateAsync(advertisement, cancellationToken);
+            var advertisement = await _unitOfWork.AdvertisementRepository.GetByIdAsync(request.Id, cancellationToken);
+            if (advertisement != null)
+            {
+                advertisement.Name = request.Name;
+                advertisement.CreatedAt = request.CreatedAt;
+                advertisement.Description = request.Description;
+                advertisement.ImagePath = request.ImagePath;
+                advertisement.CarId = request.CarId;
+                advertisement.Cost = request.Cost;
+
+                await _unitOfWork.AdvertisementRepository.UpdateAsync(advertisement, cancellationToken);
+
+            }
         }
     }
 }

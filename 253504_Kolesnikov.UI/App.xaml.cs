@@ -1,6 +1,6 @@
 ﻿namespace _253504_Kolesnikov.UI
 {
-    public partial class App : Application
+    public partial class App : Microsoft.Maui.Controls.Application
     {
         public App()
         {

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:_253504_Kolesnikov.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:entities="clr-namespace:_253504_Kolesnikov.Domain.Entities;assembly=253504_Kolesnikov.Domain"
+             xmlns:converter="clr-namespace:_253504_Kolesnikov.UI.ValueConverters"
+             x:Class="_253504_Kolesnikov.UI.Pages.AdvertisementDetails"
+             Title="AdvertisementDetails"
+             x:DataType="models:AdvertisementDetailsViewModel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            IconImageSource="icon_edit.png"
+            Command="{Binding EditAdvertisementItemCommand}"
+            CommandParameter="{Binding Advertisement}"
+            />
+        <ToolbarItem
+            IconImageSource="icon_trash.png"
+            Command="{Binding DeleteAdvertisementItemCommand}"
+            CommandParameter="{Binding Advertisement}"
+            />
+    </ContentPage.ToolbarItems>
+    <VerticalStackLayout
+        Spacing="20">
+        <Label
+            Text="Детали о продаже"
+            HorizontalOptions="CenterAndExpand"
+            FontSize="Large"/>
+        <Image
+            MaximumHeightRequest="200"
+            MaximumWidthRequest="200"
+            Source="{Binding Advertisement.ImagePath}"/>
+        <HorizontalStackLayout
+            Spacing="20">
+            <Label
+                Text="{Binding Advertisement.Name}"
+                FontSize="Small"
+                />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label
+                Text="{Binding Advertisement.Description}"
+                FontSize="Small"
+            />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label
+                Text="Цена: "
+                FontSize="Small"/>
+            <Label
+                Text="{Binding Advertisement.Cost}"
+                FontSize="Small"
+                />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label
+                Text="Дата создания: "
+                FontSize="Small"/>
+            <Label
+                Text="{Binding Advertisement.CreatedAt.Day}"
+                FontSize="Small"
+            />
+            <Label
+                Text="."
+                FontSize="Small"
+            />
+            <Label
+                Text="{Binding Advertisement.CreatedAt.Month}"
+                FontSize="Small"
+            />
+            <Label
+                Text="."
+                FontSize="Small"
+            />            
+            <Label
+                Text="{Binding Advertisement.CreatedAt.Year}"
+                FontSize="Small"
+            />
+        </HorizontalStackLayout>
+
+
+    </VerticalStackLayout>
+</ContentPage>

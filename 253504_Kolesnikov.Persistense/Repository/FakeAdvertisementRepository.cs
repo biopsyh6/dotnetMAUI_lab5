@@ -17,9 +17,11 @@ namespace _253504_Kolesnikov.Persistense.Repository
         {
             _advertisements =
                 [
-                    new Advertisement(1, "Sell", DateTime.Now, "Sell the auto", "", 1),
-                    new Advertisement(2, "Sell 2", DateTime.Now, "Sell the auto 2", "", 2),
-                    new Advertisement(3, "Sell 3", new DateTime(2015, 7, 20), "Sell the auto 3", "", 3)
+                    new Advertisement(1, "Sell", DateTime.Now, "Sell the auto", "", 1, 5000),
+                    new Advertisement(2, "Sell 2", DateTime.Now, "Sell the auto 2", "", 2, 10000),
+                    new Advertisement(3, "Sell 3", new DateTime(2015, 7, 20), "Sell the auto 3", "", 3, 15000),
+                    new Advertisement(4, "Sell 4", new DateTime(2014, 6, 23), "Sell the auto 4", "", 1, 17000),
+                    new Advertisement(5, "Sell 5", new DateTime(2019, 10, 15), "Sell the auto 5", "", 1, 18000)
                 ];
         }
         public Task AddAsync(Advertisement entity, CancellationToken cancellationToken = default)

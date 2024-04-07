@@ -57,9 +57,56 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="appsettings.json" />
+	  <None Remove="Resources\Images\audi.jpg" />
+	  <None Remove="Resources\Images\audi2.jpg" />
+	  <None Remove="Resources\Images\icon_add.png" />
+	  <None Remove="Resources\Images\icon_edit.png" />
+	  <None Remove="Resources\Images\icon_shopping_cart.png" />
+	  <None Remove="Resources\Images\icon_trash.png" />
+	  <None Remove="Resources\Images\peugeot.jpg" />
+	  <None Remove="Resources\Images\peugeot1.jpg" />
+	  <None Remove="Resources\Images\peugeot2.jpg" />
+	  <None Remove="Resources\Images\renault.jpg" />
+	  <None Remove="Resources\Images\renault2.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\253504_Kolesnikov.Application\253504_Kolesnikov.Application.csproj" />
+	  <ProjectReference Include="..\253504_Kolesnikov.Domain\253504_Kolesnikov.Domain.csproj" />
+	  <ProjectReference Include="..\253504_Kolesnikov.Persistense\253504_Kolesnikov.Persistense.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\AddAdvertisement.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddCar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdvertisementDetails.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\CarsList.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\EditAdvertisement.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

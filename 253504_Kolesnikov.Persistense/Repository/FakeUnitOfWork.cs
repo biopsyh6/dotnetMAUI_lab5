@@ -12,9 +12,9 @@ namespace _253504_Kolesnikov.Persistense.Repository
         private readonly AppDbContext _context;
         private readonly Lazy<IRepository<Car>> _carRepository;
         private readonly Lazy<IRepository<Advertisement>> _advertisementRepository;
-        public FakeUnitOfWork(AppDbContext context)
+        public FakeUnitOfWork(/*AppDbContext context*/)
         {
-            _context = context;
+            //_context = context;
             _carRepository = new Lazy<IRepository<Car>>(() => new FakeCarRepository());
             _advertisementRepository = new Lazy<IRepository<Advertisement>>(() => new FakeAdvertisementRepository());
         }

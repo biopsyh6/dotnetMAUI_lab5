@@ -14,7 +14,7 @@ namespace _253504_Kolesnikov.Persistense
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services)
         {
-            services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
+            services.AddSingleton<IUnitOfWork, EfUnitOfWork>();
             return services;
         }
         public static IServiceCollection AddPersistence(this IServiceCollection services, DbContextOptions options)

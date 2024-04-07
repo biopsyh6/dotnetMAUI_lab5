@@ -4,12 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:_253504_Kolesnikov.UI"
-    Shell.FlyoutBehavior="Disabled"
-    Title="_253504_Kolesnikov.UI">
+    xmlns:pages="clr-namespace:_253504_Kolesnikov.UI.Pages"
+    Title="_253504_Kolesnikov.UI"
+    Shell.BackgroundColor="#FFC0CB"
+    Shell.ForegroundColor="Black">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    <ShellContent
+        Title="Cars List"
+        ContentTemplate="{DataTemplate pages:CarsList}"
+        Route="Cars" />
 
 </Shell>

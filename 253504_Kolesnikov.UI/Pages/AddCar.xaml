@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_253504_Kolesnikov.UI.Pages.AddCar"
+             x:DataType="models:AddCarViewModel"
+             xmlns:models="clr-namespace:_253504_Kolesnikov.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:entities="clr-namespace:_253504_Kolesnikov.Domain.Entities;assembly=253504_Kolesnikov.Domain"
+             xmlns:converter="clr-namespace:_253504_Kolesnikov.UI.ValueConverters"
+             Title="AddCar">
+    <VerticalStackLayout>
+        <Label
+            Text="Добавление марки автомобиля"
+            FontSize="22"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="25"
+            />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Марка:" FontSize="18" VerticalOptions="Center"/>
+            <Entry Grid.Row="0" Grid.Column="1" Placeholder="Введите название марки" FontSize="18"
+                   Text="{Binding Name}" VerticalOptions="Center"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="Страна:" FontSize="18" VerticalOptions="Center"/>
+            <Entry Grid.Row="1" Grid.Column="1" Placeholder="Введите страну" FontSize="18" 
+                   Text="{Binding Country}" VerticalOptions="Center"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="Год производства:" FontSize="18" VerticalOptions="Center"/>
+            <Entry Grid.Row="2" Grid.Column="1" Placeholder="Введите год" FontSize="18"
+                   Text="{Binding Year}" VerticalOptions="Center" Keyboard="Numeric" MaxLength="4"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Text="Описание:" FontSize="18" VerticalOptions="Center"/>
+            <Editor Grid.Row="3" Grid.Column="1" Placeholder="Введите описание" FontSize="18" 
+                    Text="{Binding Description}" VerticalOptions="Center" HeightRequest="200"/>
+        </Grid>
+        <Button
+            HeightRequest="50"
+            WidthRequest="150"
+            CornerRadius="10"
+            Text="Добавить"
+            FontSize="18"
+            Margin="25"
+            Command="{Binding EnterCommand}"
+            />
+    </VerticalStackLayout>
+</ContentPage>
